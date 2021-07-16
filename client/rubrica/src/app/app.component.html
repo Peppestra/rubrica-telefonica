@@ -1,0 +1,24 @@
+<h1>Lista della spesa V. 2</h1>
+<label for="nome">Nome</label>
+<input name = "nome" type = "text" [(ngModel)] = "contatto.nome"/>
+<label for="cognome">Cognome</label>
+<input name = "cognome" type = "text" [(ngModel)] = "contatto.cognome"/>
+<label for="telefono">Telefono</label>
+<input name = "telefono" type = "text" [(ngModel)] = "contatto.telefono"/>
+<br/>
+<button (click)="aggiungi()">Aggiungi</button>
+<br>
+<h2>Lista contatti rubrica</h2>
+<table>
+	<tr>
+		<th>Nome</th>
+		<th>Cognome</th>
+		<th>Telefono</th>
+	</tr>
+	<tr *ngFor = "let c of contatti">
+		<td>{{c.nome}}</td>
+		<td>{{c.cognome}}</td>
+		<td>{{c.telefono}}</td>
+		<button (click)="rimuovi(c)">X</button>
+	</tr>
+</table>
