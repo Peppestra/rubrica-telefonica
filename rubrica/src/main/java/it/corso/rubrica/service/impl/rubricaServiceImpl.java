@@ -1,4 +1,4 @@
-package it.corso.rubrica.serviceImpl;
+package it.corso.rubrica.service.impl;
 
 
 
