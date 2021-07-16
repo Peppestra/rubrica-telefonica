@@ -1,6 +1,5 @@
 package it.corso.rubrica.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,7 @@ public class Contatto {
     @Column
     private String cognome;
     @Column
-    private String numeroDiTelefono;
+    private String telefono;
 
     public Contatto() {
     }
@@ -30,12 +29,12 @@ public class Contatto {
 		this.cognome = cognome;
 	}
 
-	public String getNumeroDiTelefono() {
-		return numeroDiTelefono;
+	public String getTelefono() {
+		return telefono;
 	}
 
-	public void setNumeroDiTelefono(String numeroDiTelefono) {
-		this.numeroDiTelefono = numeroDiTelefono;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	public Long getId() {
@@ -56,8 +55,8 @@ public class Contatto {
 
     @Override
 	public String toString() {
-		return "Contatto [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", numeroDiTelefono="
-				+ numeroDiTelefono + "]";
+		return "Contatto [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", telefono="
+				+ telefono + "]";
 	}
 
 }

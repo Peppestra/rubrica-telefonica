@@ -10,21 +10,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.corso.rubrica.model.Contatto;
-import it.corso.rubrica.service.impl.rubricaServiceImpl;
+import it.corso.rubrica.service.impl.RubricaServiceImpl;
 
 @CrossOrigin("*")
 @RestController
 public class rubricaController {
 
 	@Autowired
-	rubricaServiceImpl rs;
+	RubricaServiceImpl rs;
 	
 	@RequestMapping("/aggiungi")
 	@ResponseBody
 	public List<Contatto> aggiungi(@RequestBody Contatto c){
-		System.out.println("Service iniettato " + rs.getClass().getName());
-		System.out.println("Entrato in aggiungi");
-		System.out.println("Ricevuto dto " + c);
-		risp.setListaSpesa(rs.aggiungi(dto.getProdotto()));
-		return risp;
+		return rs.aggiungi(c);
+	}
+	
+	@RequestMapping("/rimuovi")
+	@ResponseBody
+	public List<Contatto> rimuovi(@RequestBody Contatto c){
+		return rs.rimuovi(c);
+	}
+	
+	@RequestMapping("/mostra-tutti")
+	@ResponseBody
+	public List<Contatto> mostraTutti(@RequestBody Contatto c){
+		return rs.mostraTutti();
+	}
 }

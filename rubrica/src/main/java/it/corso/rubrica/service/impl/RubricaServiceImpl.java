@@ -1,11 +1,8 @@
 package it.corso.rubrica.service.impl;
 
-
-
-import it.corso.listaspesa.model.Prodotto;
-import it.corso.listaspesa.repository.ProdottoRepository;
-import it.corso.listaspesa.service.ListaSpesaService;
 import it.corso.rubrica.model.Contatto;
+import it.corso.rubrica.repository.ContattoRepository;
+import it.corso.rubrica.service.RubricaService;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +10,14 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class rubricaServiceImpl implements rubricaService {
+public class RubricaServiceImpl implements RubricaService {
 
     @Autowired
     ContattoRepository contattoRepository;
 
     @Override
     public List<Contatto> aggiungi(Contatto c) {
-        if (c.getId() != null) {
+        if (c != null) {
             contattoRepository.save(c);
         }
         return mostraTutti();
