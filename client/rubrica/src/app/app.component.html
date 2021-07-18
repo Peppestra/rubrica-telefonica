@@ -1,25 +1,54 @@
-<h3>Aggiungi contatto rubrica</h3>
-<label for="nome">Nome:</label>
-<input name = "nome" type = "text" [(ngModel)] = "contatto.nome"/>&nbsp;
-<label for="cognome">Cognome:</label>
-<input name = "cognome" type = "text" [(ngModel)] = "contatto.cognome"/>&nbsp;
-<label for="telefono">Telefono:</label>
-<input name = "telefono" type = "text" [(ngModel)] = "contatto.telefono"/>
-<br/>
-<br/>
-<button style = "width:200px;height:50px;font-size:1.5rem;" (click)="aggiungi()">Aggiungi</button>
-<br>
-<h3>Lista contatti rubrica</h3>
-<table>
-	<tr>
-		<th>Nome</th>
-		<th>Cognome</th>
-		<th>Telefono</th>
-	</tr>
-	<tr *ngFor = "let c of contatti">
-		<td>{{c.nome}}</td>
-		<td>{{c.cognome}}</td>
-		<td>{{c.telefono}}</td>
-		<button (click)="rimuovi(c)">X</button>
-	</tr>
-</table>
+<div id = 'main-container'>
+	<span [ngClass] = 'campoErrore == ""? "" : "show"'>Il campo {{campoErrore}} non può essere vuoto</span>
+	<h1>Aggiungi contatto rubrica</h1>
+	<div class = 'form-container'>
+		<form action = ''>
+			<div>
+				<label for = 'nome'>Nome:</label>
+				<input name = 'nome' type = 'text' placeholder = 'nome' [(ngModel)] = 'contatto.nome'/>
+			</div>
+			<div>
+				<label for = 'cognome'>Cognome:</label>
+				<input name = 'cognome' type = 'text' placeholder = 'cognome' [(ngModel)] = 'contatto.cognome'/>
+			</div>
+			<div>
+				<label for = 'telefono'>Telefono:</label>
+				<input name = 'telefono' type = 'text' placeholder = '012-345-6789' [(ngModel)] = 'contatto.telefono'/>
+			</div>
+		</form>
+		<button class = 'main-button' (click) = 'aggiungi()'>Aggiungi</button>
+		<button class = 'main-button' (click) = 'conta()'>Conta</button>
+	</div>
+	<div class = 'form-container'>
+		<form action = ''>
+			<div>
+				<label for = 'ricerca'>Cerca:</label>
+				<input name = 'ricerca' type = 'text' placeholder = 'cerca contatti' [(ngModel)] = 'searchword'/>
+			</div>
+			<div class = 'search-filters'>
+				<label for='search-filter'>Cerca per:</label>
+				<select name = 'search-filter' [(ngModel)] = 'searchmode'>
+					<option value = 'nome'>Nome</option>
+					<option value = 'cognome'>Cognome</option>
+					<option value = 'telefono'>Telefono</option>
+				</select>
+			</div>
+		</form>
+		<button class = 'main-button' (click) = 'cerca()'>Cerca contatti</button>
+	</div>
+	<h1>Lista contatti rubrica</h1>
+	<table *ngIf = 'contatti.length'>
+		<tr>
+			<th>Nome</th>
+			<th>Cognome</th>
+			<th>Telefono</th>
+			<th><button title = 'svuota rubrica' (click) = 'rimuoviTutti()'>X</button></th>
+		</tr>
+		<tr *ngFor = "let c of contatti">
+			<td>{{c.nome}}</td>
+			<td>{{c.cognome}}</td>
+			<td>{{c.telefono}}</td>
+			<td><button title = 'rimuovi contatto' (click)="rimuovi(c)">X</button></td>
+		</tr>
+	</table>
+</div>
