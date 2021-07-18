@@ -1,19 +1,22 @@
 <div id = 'main-container'>
-	<span [ngClass] = 'campoErrore == ""? "" : "show"'>Il campo {{campoErrore}} non può essere vuoto</span>
+	<span class = 'error-popup' [ngClass] = 'campoErrore == ""? "" : "show"'>Il campo {{campoErrore}} non può essere vuoto</span>
 	<h1>Aggiungi contatto rubrica</h1>
 	<div class = 'form-container'>
 		<form action = ''>
 			<div>
 				<label for = 'nome'>Nome:</label>
-				<input name = 'nome' type = 'text' placeholder = 'nome' [(ngModel)] = 'contatto.nome'/>
+				<input name = 'nome' type = 'text' placeholder = 'nome' [(ngModel)] = 'contatto.nome' [pattern] = 'nomePattern' #n = 'ngModel'/>
+				<span *ngIf = 'n.errors?.pattern'>Nome non valido.</span>
 			</div>
 			<div>
 				<label for = 'cognome'>Cognome:</label>
-				<input name = 'cognome' type = 'text' placeholder = 'cognome' [(ngModel)] = 'contatto.cognome'/>
+				<input name = 'cognome' type = 'text' placeholder = 'cognome' [(ngModel)] = 'contatto.cognome' [pattern] = 'cognomePattern' #c = 'ngModel'/>
+				<span *ngIf = 'c.errors?.pattern'>Cognome non valido.</span>
 			</div>
 			<div>
 				<label for = 'telefono'>Telefono:</label>
-				<input name = 'telefono' type = 'text' placeholder = '012-345-6789' [(ngModel)] = 'contatto.telefono'/>
+				<input (input) = 'onStringChange(telefono)' name = 'telefono' type = 'tel' maxlength = '12' placeholder = '012-345-6789' [(ngModel)] = 'telefono' [pattern] = 'telefonoPattern' #t = 'ngModel'/>
+				<span *ngIf = 't.errors?.pattern'>Numero di telefono non valido.</span>
 			</div>
 		</form>
 		<button class = 'main-button' (click) = 'aggiungi()'>Aggiungi</button>

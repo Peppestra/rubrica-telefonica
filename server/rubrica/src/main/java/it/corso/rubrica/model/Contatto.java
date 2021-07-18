@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(indexes = {
 	@Index(columnList = "nome"),
+	@Index(columnList = "telefono", unique = true),
 	@Index(columnList = "cognome, nome", unique = true)
 })
 public class Contatto implements Serializable{
@@ -23,7 +24,7 @@ public class Contatto implements Serializable{
 	private String nome;
 	@Column(nullable = false)
 	private String cognome;
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String telefono;
 
 	public Contatto(){

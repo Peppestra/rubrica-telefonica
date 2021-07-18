@@ -16,6 +16,17 @@ export class AppComponent{
 	campoErrore: string = '';
 	searchword: string = '';
 	searchmode: string = 'nome';
+	telefono: string = '';
+	nomePattern = '^[A-Z][a-z]+(?: [A-Z][a-z]+)*$';
+	cognomePattern = '^[A-Z][a-z]+(?: [A-Z][a-z]+)*$';
+	telefonoPattern = '^[0-9]{3}-[0-9]{3}-[0-9]{4}$';
+
+	onStringChange(telefono: string): void{
+		if(telefono.length < 8 && telefono.length % 4 == 3){
+			this.telefono = telefono + '-';
+		}
+		this.contatto.telefono = telefono.replace(/-/g, '');
+	}
 
 	constructor(private http: HttpClient) {
 		let ox: Observable<Contatto[]> =
@@ -48,6 +59,7 @@ export class AppComponent{
 				ox.subscribe(c => this.contatti = c);
 				this.contatto.nome = '';
 				this.contatto.cognome = '';
+				this.telefono = '';
 				this.contatto.telefono = '';
 		}
 	}
@@ -71,6 +83,7 @@ export class AppComponent{
 		ox.subscribe(c => this.contatti = c);
 		this.contatto.nome = '';
 		this.contatto.cognome = '';
+		this.telefono = '';
 		this.contatto.telefono = '';
 	}
 	rimuoviTutti(){

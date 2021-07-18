@@ -7,6 +7,7 @@ import it.corso.rubrica.service.RubricaService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +18,12 @@ public class RubricaServiceImpl implements RubricaService{
 	@Override
 	public List<Contatto> aggiungi(Contatto c){
 		if(c != null){
-			contattoRepository.save(c);
+			try{
+				contattoRepository.save(c);
+			}
+			catch(DataIntegrityViolationException e){
+				System.out.println("Exception: " + e.getCause());
+			}
 		}
 		return mostraTutti();
 	}

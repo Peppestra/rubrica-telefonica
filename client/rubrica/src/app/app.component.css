@@ -2,7 +2,7 @@
 	font-size: 1.25rem;
 	text-align: center;
 }
-#main-container span{
+#main-container .error-popup{
 	background-color: gold;
 	left: 0;
 	opacity: 0;
@@ -13,7 +13,7 @@
 	transition: opacity 0.5s ease-in;
 	visibility: hidden;
 }
-#main-container span.show{
+#main-container .error-popup.show{
 	opacity: 1;
 	visibility: visible;
 }
@@ -31,6 +31,13 @@ form{
 	justify-content: flex-end;
 	margin: 5px;
 	min-width: 320px;
+	position: relative;
+}
+.form-container span{
+	color: red;
+	font-size: 1rem;
+	position: absolute;
+	top: 100%;
 }
 .form-container input{
 	font-size: inherit;
